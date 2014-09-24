@@ -1,0 +1,65 @@
+apply from: 'build.gradle'
+
+apply plugin: 'signing'
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives jar, javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name 'aeslib'
+                packaging 'jar'
+                description 'A simple helper for turning strings and arrays of strings into serializable tokens'
+                url 'https://georgemcintosh.com/tokenlib'
+
+                scm {
+                    connection 'scm:git:git://github.com/georgecodes/tokenlib.git'
+                    developerConnection 'scm:git:git://github.com/georgecodes/tokenlib.git'
+                    url 'scm:git:git://github.com/georgecodes/tokenlib.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'georgemc'
+                        name 'George McIntosh'
+                        email 'george@georgemcintosh.com'
+                    }
+                }
+            }
+        }
+    }
+}
