@@ -34,7 +34,7 @@ uploadArchives {
             }
 
             pom.project {
-                name 'aeslib'
+                name 'tokenlib'
                 packaging 'jar'
                 description 'A simple helper for turning strings and arrays of strings into serializable tokens'
                 url 'https://georgemcintosh.com/tokenlib'

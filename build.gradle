@@ -3,8 +3,8 @@ apply plugin: "application"
 apply plugin: 'maven'
 
 group='com.elevenware'
-version='1.0-SNAPSHOT'
-archivesBaseName='aeshelper'
+version='1.0'
+archivesBaseName='tokenlib'
 
 repositories {
     mavenCentral()
