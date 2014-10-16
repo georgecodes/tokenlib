@@ -10,7 +10,7 @@ public class TestAesTokenGeneration {
     public void canEncryptAndDecryptAString() throws Exception {
 
         String email = "george@elevenware.com";
-        String key = "Bar12345Bar12345";
+        String key = "53AB6B6FC23A2xaa";
 
         SimpleAesEncryptor aesifier = SimpleAesEncryptor.simpleAesForKey(key);
 
@@ -26,7 +26,7 @@ public class TestAesTokenGeneration {
     public void canEncryptAndDecryptAStringUsingPropertyKey() throws Exception {
 
         String email = "george@elevenware.com";
-        String key = "Bar12345Bar12345";
+        String key = "53AB6B6FC23A2xaa";
         String propertyName = "encryption.property";
         System.setProperty(propertyName, key);
 
